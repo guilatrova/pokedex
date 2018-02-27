@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { operations } from '../duck';
+import { operations, selectors } from '../duck';
 
 import PokemonSearch from '../components/PokemonSearch';
 
@@ -25,7 +25,7 @@ class PokedexPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isFetching: false
+        isFetching: selectors.isFetching(state)
     };
 };
 

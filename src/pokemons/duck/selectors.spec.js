@@ -11,4 +11,13 @@ describe('pokemons/duck/selectors', () => {
         )
         .toEqual(pokemons);
     });
+
+    it('isFetching', () => {
+        const isFetching = true;
+        const state = buildState({ isFetching });
+        expect(
+            selectors.isFetching(state)
+        )
+        .toEqual(isFetching);
+    });
 });
