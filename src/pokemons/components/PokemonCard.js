@@ -20,7 +20,7 @@ class PokemonCard extends React.Component {
     static propTypes = {
         number: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
+        types: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
         classes: PropTypes.object.isRequired
     }
@@ -28,7 +28,7 @@ class PokemonCard extends React.Component {
     onClick = () => {}
 
     render() {
-        const { number, name, type, image, classes } = this.props;
+        const { number, name, types, image, classes } = this.props;
         return (
             <Card className={classes.card}>
 
@@ -42,7 +42,7 @@ class PokemonCard extends React.Component {
                     </Typography>
 
                     <Typography component="p">
-                        {type}
+                        {types.map(t => t + ",")}
                     </Typography>
                 </CardContent>
 

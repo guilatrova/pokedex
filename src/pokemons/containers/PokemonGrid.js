@@ -13,7 +13,6 @@ class PokemonGrid extends React.Component {
 
     render() {
         const { pokemons } = this.props;
-        console.log(pokemons);
 
         const cards = pokemons.map(pokemon => {
             return (
@@ -22,7 +21,7 @@ class PokemonGrid extends React.Component {
                         number={pokemon.id} 
                         name={pokemon.name} 
                         image={pokemon.sprites.front_default}
-                        type={"NULL"} />
+                        types={pokemon.types.map(t => t.type.name)} />
                 </Grid>
             );
         });
