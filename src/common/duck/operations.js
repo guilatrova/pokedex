@@ -63,18 +63,16 @@ export class Operation {
 }
 
 export class GetOperation extends Operation {
-    constructor(endpoint, requestAction, receiveAction) {
+    constructor(requestAction, receiveAction) {
         super(requestAction, receiveAction);
-        this.endpoint = endpoint;
     }
 
-    onSucceed(dispatch, receiveAction, data) {
-        dispatch(receiveAction('success', data));
-        return data;
+    getEndpoint() {
+        return "";
     }
 
     getApiPromise(api) {
-        return api.get(this.endpoint);
+        return api.get(this.getEndpoint());
     }
 }
 
