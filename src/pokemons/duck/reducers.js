@@ -14,7 +14,7 @@ function fetchReducer(state, action) {
                 isFetching: false,
                 pokemons: [
                     ...state.pokemons,
-                    ...action.pokemon
+                    action.pokemon
                 ]
             };
 
