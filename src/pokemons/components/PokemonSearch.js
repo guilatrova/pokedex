@@ -32,7 +32,7 @@ class PokemonSearch extends React.Component {
                     onChange={this.onChangeInputValue("search")}
                 />
 
-                <Button variant="raised" color="primary"onClick={this.onSearch}>
+                <Button variant="raised" color="primary" disabled={this.props.isFetching} onClick={this.onSearch}>
                     Catch it!
                 </Button>
 
