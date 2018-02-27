@@ -1,20 +1,9 @@
 import axios from 'axios';
-import session from './session';
 
-export const BASE_URL = process.env.API_BASE_URL;
+export const BASE_URL = "https://pokeapi.co/api/v2/";
 
-export default function createAPI(addAuthentication = true) {
-    let auth = { };
-    if (addAuthentication && session.isAuthenticated()) {
-        auth = {
-            headers: {
-                Authorization: `Token ${session.getToken()}`
-            },
-        };
-    }
+const createAPI = () => axios.create({
+    baseURL: BASE_URL
+});
 
-    return axios.create({
-       baseURL: BASE_URL,
-       ...auth
-    });
-}
+export default createAPI;
