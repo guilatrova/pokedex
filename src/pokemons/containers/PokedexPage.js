@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { operations, selectors } from '../duck';
 
 import PokemonSearch from '../components/PokemonSearch';
+import PokemonCard from '../components/PokemonCard';
 
 class PokedexPage extends React.Component {
     static propTypes = {
@@ -18,6 +19,9 @@ class PokedexPage extends React.Component {
             <div>
                 <PokemonSearch onSearch={onSearch} isFetching={isFetching} />
 
+                <div style={{maxWidth:200}}>
+                    <PokemonCard number={1} name="Bulbasaur" type="grass" image="http://via.placeholder.com/96x96" />
+                </div>
             </div>
         );
     }
