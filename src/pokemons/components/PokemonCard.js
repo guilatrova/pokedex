@@ -7,6 +7,9 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 
 const styles = {
+    card: {
+        width: 200
+    },
     image: {
         display: 'block',
         margin: 'auto'
@@ -27,7 +30,7 @@ class PokemonCard extends React.Component {
     render() {
         const { number, name, type, image, classes } = this.props;
         return (
-            <Card className="pokemon-card">
+            <Card className={classes.card}>
 
                 <CardContent>
                     <div>

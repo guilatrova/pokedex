@@ -19,7 +19,7 @@ class PokedexPage extends React.Component {
             <div>
                 <PokemonSearch onSearch={onSearch} isFetching={isFetching} />
 
-                <div style={{maxWidth:200}}>
+                <div>
                     <PokemonCard number={1} name="Bulbasaur" type="grass" image="http://via.placeholder.com/96x96" />
                 </div>
             </div>
