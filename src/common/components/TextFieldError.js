@@ -7,13 +7,11 @@ import { FormControl, FormHelperText } from 'material-ui/Form';
 
 const TextFieldError = ({label, error, ...other}) => {        
     return (
-        <div>
-            <FormControl error={!!error}>
-                <InputLabel htmlFor="name-error">{label}</InputLabel>
-                <Input id="name-error" {...other} />
-                {error && <FormHelperText>{error}</FormHelperText>}
-            </FormControl>
-        </div>
+        <FormControl error={!!error}>
+            <InputLabel htmlFor="name-error">{label}</InputLabel>
+            <Input id="name-error" {...other} />
+            {error && <FormHelperText>{error}</FormHelperText>}
+        </FormControl>
     );    
 };
 
