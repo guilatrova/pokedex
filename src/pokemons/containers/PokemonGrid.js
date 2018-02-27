@@ -17,12 +17,13 @@ class PokemonGrid extends React.Component {
 
         const cards = pokemons.map(pokemon => {
             return (
-                <PokemonCard 
-                    key={pokemon.id} 
-                    number={pokemon.id} 
-                    name={pokemon.name} 
-                    image={pokemon.sprites.front_default}
-                    type={"NULL"} />
+                <Grid key={pokemon.id} item>
+                    <PokemonCard
+                        number={pokemon.id} 
+                        name={pokemon.name} 
+                        image={pokemon.sprites.front_default}
+                        type={"NULL"} />
+                </Grid>
             );
         });
 
