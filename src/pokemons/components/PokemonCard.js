@@ -16,48 +16,43 @@ const styles = {
     }
 };
 
-class PokemonCard extends React.Component {
-    static propTypes = {
-        number: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        types: PropTypes.array.isRequired,
-        image: PropTypes.string.isRequired,
-        classes: PropTypes.object.isRequired,
-        onRelease: PropTypes.func.isRequired
-    }
+const PokemonCard = ({ number, name, types, image, classes, onRelease }) => {
+    return (
+        <Card className={classes.card}>
 
-    onClick = () => {}
+            <CardContent>
+                <div>
+                    <img className={classes.image} src={image} /> 
+                </div>
 
-    render() {
-        const { number, name, types, image, classes, onRelease } = this.props;
-        return (
-            <Card className={classes.card}>
+                <Typography variant="title" gutterBottom>
+                    # {number} {name}
+                </Typography>
 
-                <CardContent>
-                    <div>
-                        <img className={classes.image} src={image} /> 
-                    </div>
+                <Typography component="p">
+                    {types.map(t => t + ",")}
+                </Typography>
+            </CardContent>
 
-                    <Typography variant="title" gutterBottom>
-                        # {number} {name}
-                    </Typography>
+            <CardActions>
+                <Button size="small" color="primary">
+                    DETAILS
+                </Button>
+                <Button size="small" color="primary" onClick={onRelease}>
+                    RELEASE
+                </Button>
+            </CardActions>
+        </Card>
+    );
+};
 
-                    <Typography component="p">
-                        {types.map(t => t + ",")}
-                    </Typography>
-                </CardContent>
-
-                <CardActions>
-                    <Button size="small" color="primary">
-                        DETAILS
-                    </Button>
-                    <Button size="small" color="primary" onClick={onRelease}>
-                        RELEASE
-                    </Button>
-                </CardActions>
-            </Card>
-        );
-    }
-}
+PokemonCard.propTypes = {
+    number: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    types: PropTypes.array.isRequired,
+    image: PropTypes.string.isRequired,
+    classes: PropTypes.object.isRequired,
+    onRelease: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(PokemonCard);
