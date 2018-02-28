@@ -6,11 +6,12 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 
+import { extractIdFromUrl } from '../../utils/query';
+import { operations, selectors } from '../duck';
 import StatsTable from './StatsTable';
 import TypeChip from './TypeChip';
 import AbilityChip from './AbilityChip';
 import AbilityDescription from './AbilityDescription';
-import { operations, selectors } from '../duck';
 
 const styles = {
     float: {
@@ -35,11 +36,9 @@ class PokemonDetails extends React.Component {
     }
 
     handleSelectAbility = (ability) => {
-        const reg = /\d+(?=\D*$)(?=.*)/g;
-        const { url } = ability.ability;
-        const id = parseInt(reg.exec(url.substring(0, url.length - 1))[0]);
-
-        this.props.onFetchAbility(ability);
+        const id = extractIdFromUrl(ability.ability.url);
+        
+        this.props.onFetchAbility(id);
         this.setState({ selectedAbility: id });
     }
 

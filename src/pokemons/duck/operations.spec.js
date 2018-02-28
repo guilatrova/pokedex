@@ -11,12 +11,7 @@ describe('pokemons/duck/operations', () => {
 
     describe("FetchAbilityOperation", () => {
         it('generates correct api endpoint', () => {
-            const dummyAbility = {
-                ability: {
-                    url: "https://pokeapi.co/api/v2/ability/65/"
-                }
-            };
-            const operation = new FetchAbilityOperation(dummyAbility);
+            const operation = new FetchAbilityOperation(65);
             expect(operation.getEndpoint()).toMatch("ability/65");
         });
     });

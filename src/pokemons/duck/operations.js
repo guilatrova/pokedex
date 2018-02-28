@@ -11,21 +11,16 @@ export class FetchPokemonOperation extends GetOperation {
 }
 
 export class FetchAbilityOperation extends GetOperation {
-    constructor(ability) {
+    constructor(id) {
         super(actions.fetchAbility, actions.receiveAbility);
-        this.ability = ability;
+        this.id = id;
     }
 
-    getEndpoint() {
-        const reg = /\d+(?=\D*$)(?=.*)/g;
-        const { url } = this.ability.ability;
-        const id = reg.exec(url.substring(0, url.length - 1));
-        return `ability/${id}`;
-    }
+    getEndpoint = () => `ability/${this.id}`;
 }
 
 const fetchPokemon = (search) => new FetchPokemonOperation(search).dispatch();
-const fetchAbility = (ability) => new FetchAbilityOperation(ability).dispatch();
+const fetchAbility = (id) => new FetchAbilityOperation(id).dispatch();
 const releasePokemon = actions.releasePokemon;
 
 export default {
