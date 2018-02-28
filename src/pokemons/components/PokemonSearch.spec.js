@@ -31,7 +31,7 @@ describe("<PokemonSearch />", () => {
     });
 
     it('button should calls onSearch with args', () => {
-        const onSearchSpy = jest.fn(() => Promise.resolve({}))
+        const onSearchSpy = jest.fn(() => Promise.resolve({}));
         const wrapper = shallow(<PokemonSearch {...defaultProps} onSearch={onSearchSpy} />);
         const search = "search-text-value";
         

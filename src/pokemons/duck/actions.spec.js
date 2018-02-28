@@ -58,4 +58,34 @@ describe('pokemons/duck/actions', () => {
         });
     });
 
+    describe("FETCH_ABILITY", () => {
+        const requestAbility = { ability: { url: "ability/100" } };
+        it('should dispatch success action when ok', () => {
+            const ability = { id: 1, name: "ability" };
+            const expectedActions = [
+                { type: types.FETCH_ABILITY },
+                { type: types.FETCH_ABILITY, result: 'success', ability }
+            ];
+
+            mock.onGet().reply(200, ability);
+            
+            return store.dispatch(operations.fetchAbility(requestAbility)).then(() => {
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+
+        it('should dispatch fail action when something goes wrong', () => {
+            const errors = { detail: "not found" };
+            const expectedActions = [
+                { type: types.FETCH_ABILITY },
+                { type: types.FETCH_ABILITY, result: 'fail', errors }
+            ];
+
+            mock.onGet().reply(404, errors);
+
+            return store.dispatch(operations.fetchAbility(requestAbility)).then(() => {
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+    });
 });

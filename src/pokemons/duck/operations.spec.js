@@ -1,11 +1,23 @@
-import { FetchOperation } from './operations';
+import { FetchPokemonOperation, FetchAbilityOperation } from './operations';
 
 describe('pokemons/duck/operations', () => {
 
-    describe("FetchOperations", () => {
+    describe("FetchPokemonOperation", () => {
         it('generates correct api endpoint', () => {
-            const operation = new FetchOperation("search");
+            const operation = new FetchPokemonOperation("search");
             expect(operation.getEndpoint()).toMatch("pokemon/search");
+        });
+    });
+
+    describe("FetchAbilityOperation", () => {
+        it('generates correct api endpoint', () => {
+            const dummyAbility = {
+                ability: {
+                    url: "https://pokeapi.co/api/v2/ability/65/"
+                }
+            };
+            const operation = new FetchAbilityOperation(dummyAbility);
+            expect(operation.getEndpoint()).toMatch("ability/65");
         });
     });
 

@@ -29,8 +29,32 @@ const releasePokemon = (id) => {
     };
 };
 
+const fetchAbility = () => {
+    return {
+        type: types.FETCH_ABILITY        
+    };
+};
+
+const receiveAbility = (result, data) => {
+    if (result === 'success') {
+        return {
+            type: types.FETCH_ABILITY,
+            result,
+            ability: data
+        };
+    }
+
+    return {
+        type: types.FETCH_ABILITY,
+        result,
+        errors: data
+    };
+};
+
 export default {
     fetchPokemon,
     receivePokemon,
-    releasePokemon
+    releasePokemon,
+    fetchAbility,
+    receiveAbility
 };

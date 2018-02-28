@@ -10,15 +10,16 @@ const styles = theme => ({
     }
 });
 
-const AbilityChip = ({ label, classes }) => {
+const AbilityChip = ({ label, classes, onFetchAbilityDescription }) => {
     return (
-        <Chip label={label} className={classes.chip} />
+        <Chip label={label} className={classes.chip} onClick={onFetchAbilityDescription} />
     );
 };
 
 AbilityChip.propTypes = {
     label: PropTypes.string.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    onFetchAbilityDescription: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(AbilityChip);
