@@ -22,13 +22,14 @@ class PokemonCard extends React.Component {
         name: PropTypes.string.isRequired,
         types: PropTypes.array.isRequired,
         image: PropTypes.string.isRequired,
-        classes: PropTypes.object.isRequired
+        classes: PropTypes.object.isRequired,
+        onRelease: PropTypes.func.isRequired
     }
 
     onClick = () => {}
 
     render() {
-        const { number, name, types, image, classes } = this.props;
+        const { number, name, types, image, classes, onRelease } = this.props;
         return (
             <Card className={classes.card}>
 
@@ -48,7 +49,10 @@ class PokemonCard extends React.Component {
 
                 <CardActions>
                     <Button size="small" color="primary">
-                        DETALHES
+                        DETAILS
+                    </Button>
+                    <Button size="small" color="primary" onClick={onRelease}>
+                        RELEASE
                     </Button>
                 </CardActions>
             </Card>

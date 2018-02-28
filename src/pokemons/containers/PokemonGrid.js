@@ -8,11 +8,12 @@ import Grid from 'material-ui/Grid';
 
 class PokemonGrid extends React.Component {
     static propTypes = {
-        pokemons: PropTypes.array.isRequired
+        pokemons: PropTypes.array.isRequired,
+        onRelease: PropTypes.func.isRequired
     }
 
     render() {
-        const { pokemons } = this.props;
+        const { pokemons, onRelease } = this.props;
 
         const cards = pokemons.map(pokemon => {
             return (
@@ -21,7 +22,8 @@ class PokemonGrid extends React.Component {
                         number={pokemon.id} 
                         name={pokemon.name} 
                         image={pokemon.sprites.front_default}
-                        types={pokemon.types.map(t => t.type.name)} />
+                        types={pokemon.types.map(t => t.type.name)}
+                        onRelease={() => onRelease(pokemon)} />
                 </Grid>
             );
         });
