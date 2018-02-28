@@ -5,9 +5,9 @@ import Input, { InputLabel } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 
 
-const TextFieldError = ({label, error, ...other}) => {        
+const TextFieldError = ({label, error, className, ...other}) => {        
     return (
-        <FormControl error={!!error}>
+        <FormControl error={!!error} className={className}>
             <InputLabel htmlFor="name-error">{label}</InputLabel>
             <Input id="name-error" {...other} />
             {error && <FormHelperText>{error}</FormHelperText>}
@@ -16,7 +16,7 @@ const TextFieldError = ({label, error, ...other}) => {
 };
 
 TextFieldError.propTypes = {
-    classes: PropTypes.object,
+    className: PropTypes.string,
     label: PropTypes.string.isRequired,
     error: PropTypes.string
 };

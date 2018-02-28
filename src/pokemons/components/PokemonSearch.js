@@ -1,9 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
 import TextFieldError from '../../common/components/TextFieldError';
+
+const styles = theme => ({
+    root: {
+        margin: theme.spacing.unit * 2,
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: '40%'
+    }
+});
 
 class PokemonSearch extends React.Component {
     static propTypes = {
@@ -24,9 +36,11 @@ class PokemonSearch extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
-            <div>
+            <div className={classes.root}>
                 <TextFieldError
+                    className={classes.textField}
                     label="Search pokemon"
                     value={this.state.search}
                     onChange={this.onChangeInputValue("search")}
@@ -41,4 +55,4 @@ class PokemonSearch extends React.Component {
     }
 }
 
-export default PokemonSearch;
+export default withStyles(styles)(PokemonSearch);

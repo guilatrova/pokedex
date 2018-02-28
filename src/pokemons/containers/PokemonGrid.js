@@ -28,7 +28,7 @@ class PokemonGrid extends React.Component {
 
         return (
             <div>
-                <Grid container spacing={16}>
+                <Grid container justify="center" spacing={16}>
                     {cards}
                 </Grid>
             </div>

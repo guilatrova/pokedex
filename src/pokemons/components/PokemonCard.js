@@ -20,7 +20,7 @@ class PokemonCard extends React.Component {
     static propTypes = {
         number: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
-        types: PropTypes.string.isRequired,
+        types: PropTypes.array.isRequired,
         image: PropTypes.string.isRequired,
         classes: PropTypes.object.isRequired
     }
