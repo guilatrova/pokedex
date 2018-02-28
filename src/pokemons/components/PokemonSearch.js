@@ -33,7 +33,9 @@ class PokemonSearch extends React.Component {
     }
 
     onSearch = () => {
-        this.props.onSearch(this.state.search);
+        this.props.onSearch(this.state.search).then(() => {
+            this.setState({ search: "" });
+        });
     }
 
     render() {
