@@ -33,10 +33,20 @@ function fetchReducer(state, action) {
     }
 }
 
+function removeReducer(state, id) {
+    return {
+        ...state,
+        pokemons: state.pokemons.filter(pkm => pkm.id  != id)
+    };
+}
+
 export default function reducer(state = initialState, action) {    
     switch (action.type) {        
         case types.FETCH_POKEMON:
             return fetchReducer(state, action);
+
+        case types.RELEASE_POKEMON:
+            return removeReducer(state, action.id);
 
         default:
             return state;

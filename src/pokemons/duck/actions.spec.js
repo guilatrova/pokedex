@@ -1,4 +1,5 @@
 import operations from './operations';
+import actions from './actions';
 import types from './types';
 
 describe('pokemons/duck/actions', () => {
@@ -42,6 +43,18 @@ describe('pokemons/duck/actions', () => {
             return store.dispatch(operations.fetchPokemon("error")).then(() => {
                 expect(store.getActions()).toEqual(expectedActions);
             });
+        });
+    });
+
+    describe("RELEASE_POKEMON", () => {
+
+        it('is created correctly', () => {
+            const id = 25;
+            const expectedAction = { 
+                type: types.RELEASE_POKEMON, id: 25 
+            };
+
+            expect(actions.releasePokemon(id)).toEqual(expectedAction);
         });
     });
 

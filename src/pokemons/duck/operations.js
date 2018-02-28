@@ -11,7 +11,9 @@ export class FetchOperation extends GetOperation {
 }
 
 const fetchPokemon = (search) => new FetchOperation(search).dispatch();
+const releasePokemon = actions.releasePokemon;
 
 export default {
-    fetchPokemon
+    fetchPokemon,
+    releasePokemon
 };

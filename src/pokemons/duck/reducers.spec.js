@@ -57,4 +57,25 @@ describe('pokemons/duck/reducers', () => {
 
     });
 
+
+    describe("RELEASE_POKEMON", () => {
+
+        const createPokemon = (id, name) => ({ id, name });
+        const somePokemonsState = {
+            ...initialState,
+            pokemons: [ createPokemon(1, 'bulbasaur'), createPokemon(25, 'pikachu') ]
+        };
+
+        it('should remove pokemon from list', () => {
+            expect(
+                reducer(somePokemonsState, actions.releasePokemon(25))
+            ).toEqual({
+                pokemons: [ createPokemon(1, 'bulbasaur') ],
+                isFetching: false,
+                errors: {}
+            });
+        });
+
+    });
+
 });
