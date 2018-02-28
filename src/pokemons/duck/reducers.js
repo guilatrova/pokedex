@@ -2,11 +2,12 @@ import types from './types';
 
 const initialState = {
     pokemons: [],
+    abilities: [],
     isFetching: false,
     errors: {},
 };
 
-function fetchReducer(state, action) {
+function fetchPokemonReducer(state, action) {
     switch(action.result) {
         case 'success':
             return {
@@ -33,7 +34,34 @@ function fetchReducer(state, action) {
     }
 }
 
-function removeReducer(state, id) {
+function fetchAbilityReducer(state, action) {
+    switch(action.result) {
+        case 'success':
+            return {
+                ...state,
+                isFetching: false,
+                abilities: [
+                    ...state.abilities,
+                    action.ability
+                ]
+            };
+
+        case 'fail':
+            return {
+                ...state,
+                isFetching: false,
+                errors: action.errors
+            };
+
+        default:
+            return {
+                ...state,
+                isFetching: true                
+            };
+    }
+}
+
+function removePokemonReducer(state, id) {
     return {
         ...state,
         pokemons: state.pokemons.filter(pkm => pkm.id  != id)
@@ -43,10 +71,13 @@ function removeReducer(state, id) {
 export default function reducer(state = initialState, action) {    
     switch (action.type) {        
         case types.FETCH_POKEMON:
-            return fetchReducer(state, action);
+            return fetchPokemonReducer(state, action);
 
         case types.RELEASE_POKEMON:
-            return removeReducer(state, action.id);
+            return removePokemonReducer(state, action.id);
+
+        case types.FETCH_ABILITY:
+            return fetchAbilityReducer(state, action);
 
         default:
             return state;

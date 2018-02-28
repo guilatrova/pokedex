@@ -20,4 +20,21 @@ describe('pokemons/duck/selectors', () => {
         )
         .toEqual(isFetching);
     });
+
+    it('getAbilitiesDescriptionsMappedById', () => {
+        const abilities = [
+            { id: 7, effect_entries: [ { short_effect: "Description7" } ] },
+            { id: 27, effect_entries: [ { short_effect: "Description27" } ] },
+        ];
+        const expected = [];
+        expected[7] = "Description7";
+        expected[27] = "Description27";
+
+        const state = buildState({ abilities });
+
+        expect(
+            selectors.getAbilitiesDescriptionsMappedById(state)
+        )
+        .toEqual(expected);
+    });
 });
