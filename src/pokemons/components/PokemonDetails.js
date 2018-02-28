@@ -9,62 +9,87 @@ import Typography from 'material-ui/Typography';
 import StatsTable from './StatsTable';
 import TypeChip from './TypeChip';
 import AbilityChip from './AbilityChip';
+import AbilityDescription from './AbilityDescription';
 import { operations, selectors } from '../duck';
 
 const styles = {
     float: {
         float: 'left'
+    },
+    abilityDescription: {
+        marginTop: 5        
     }
 };
 
-const PokemonDetails = ({ pokemon, classes, onFetchAbility }) => {
-    //Stat doesnt have id prop, so we need to set it to avoid errors
-    const stats = pokemon.stats.map((s, id) => ({ id, ...s }));
+class PokemonDetails extends React.Component {
+    
+    static propTypes = {
+        pokemon: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
+        abilitiesDescriptions: PropTypes.array.isRequired,
+        onFetchAbility: PropTypes.func.isRequired
+    };
 
-    return (
-        <Grid container>
-            <Grid item xs={12}>
-                <img className={classes.float} src={pokemon.sprites.front_default} />
+    state = {
+        selectedAbility: null
+    }
 
-                {pokemon.types.map(type => <TypeChip key={type.slot} label={type.type.name} />)}
+    handleSelectAbility = (ability) => {
+        const reg = /\d+(?=\D*$)(?=.*)/g;
+        const { url } = ability.ability;
+        const id = parseInt(reg.exec(url.substring(0, url.length - 1))[0]);
 
-                <Typography variant="body1" gutterBottom>
-                    Weight: {pokemon.weight}
-                </Typography>
+        this.props.onFetchAbility(ability);
+        this.setState({ selectedAbility: id });
+    }
 
-                <Typography variant="body1" gutterBottom>
-                    Height: {pokemon.height}
-                </Typography>
+    render() {
+        const { pokemon, classes, abilitiesDescriptions } = this.props;
+        const { selectedAbility } = this.state;
+        const stats = pokemon.stats.map((s, id) => ({ id, ...s })); //Stat doesnt have id prop, so we need to set it to avoid errors
 
+        return (
+            <Grid container>
+                <Grid item xs={12}>
+                    <img className={classes.float} src={pokemon.sprites.front_default} />
+
+                    {pokemon.types.map(type => <TypeChip key={type.slot} label={type.type.name} />)}
+
+                    <Typography variant="body1" gutterBottom>
+                        Weight: {pokemon.weight}
+                    </Typography>
+
+                    <Typography variant="body1" gutterBottom>
+                        Height: {pokemon.height}
+                    </Typography>
+
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                    <Typography variant="title" gutterBottom>
+                        Stats
+                    </Typography>
+
+                    <StatsTable stats={stats} />
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                    <Typography variant="title" gutterBottom>
+                        Abilities
+                    </Typography>
+
+                    {pokemon.abilities.map(ability => 
+                        <AbilityChip key={ability.slot} label={ability.ability.name} onClick={() => this.handleSelectAbility(ability)} />)
+                    }
+
+                    <Typography className={classes.abilityDescription} variant="subheading">
+                        <AbilityDescription selected={selectedAbility} abilities={abilitiesDescriptions} />
+                    </Typography>
+                </Grid>
             </Grid>
-
-            <Grid item>
-                <Typography variant="title" gutterBottom>
-                    Stats
-                </Typography>
-
-                <StatsTable stats={stats} />
-            </Grid>
-
-            <Grid item>
-                <Typography variant="title" gutterBottom>
-                    Abilities
-                </Typography>
-
-                {pokemon.abilities.map(ability => 
-                    <AbilityChip key={ability.slot} label={ability.ability.name} onClick={() => onFetchAbility(ability)} />)
-                }
-            </Grid>
-        </Grid>
-    );
-};
-
-PokemonDetails.propTypes = {
-    pokemon: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired,
-    abilitiesDescriptions: PropTypes.array.isRequired,
-    onFetchAbility: PropTypes.func.isRequired
-};
+        );
+    }
+}
 
 const mapStateToProps = state => {
     return {
