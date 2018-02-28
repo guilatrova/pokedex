@@ -6,7 +6,7 @@ import { selectors } from '../duck';
 import PokemonCard from '../components/PokemonCard';
 import Grid from 'material-ui/Grid';
 
-const PokemonGrid = ({ pokemons, onRelease }) => {
+const PokemonGrid = ({ pokemons, onRelease, onSeeDetails }) => {
     const cards = pokemons.map(pokemon => {
         return (
             <Grid key={pokemon.id} item>
@@ -15,7 +15,8 @@ const PokemonGrid = ({ pokemons, onRelease }) => {
                     name={pokemon.name} 
                     image={pokemon.sprites.front_default}
                     types={pokemon.types.map(t => t.type.name)}
-                    onRelease={() => onRelease(pokemon)} />
+                    onRelease={() => onRelease(pokemon)}
+                    onSeeDetails={() => onSeeDetails(pokemon)} />
             </Grid>
         );
     });
@@ -31,7 +32,8 @@ const PokemonGrid = ({ pokemons, onRelease }) => {
 
 PokemonGrid.propTypes = {
     pokemons: PropTypes.array.isRequired,
-    onRelease: PropTypes.func.isRequired
+    onRelease: PropTypes.func.isRequired,
+    onSeeDetails: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {

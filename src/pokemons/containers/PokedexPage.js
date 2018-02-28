@@ -5,6 +5,7 @@ import { operations, selectors } from '../duck';
 
 import PokemonSearch from '../components/PokemonSearch';
 import ReleasePokemonConfirmDialog from '../components/ReleasePokemonConfirmDialog';
+import PokemonDetailsDialog from './PokemonDetailsDialog';
 import PokemonGrid from './PokemonGrid';
 
 class PokedexPage extends React.Component {
@@ -16,7 +17,9 @@ class PokedexPage extends React.Component {
 
     state = {
         openReleaseDialog: false,
-        releasePokemon: null
+        openDetails: false,
+        releasePokemon: null,
+        detailsPokemon: null
     }
 
     handleReleaseRequest = (releasePokemon) => this.setState({ openReleaseDialog: true, releasePokemon });
@@ -28,21 +31,31 @@ class PokedexPage extends React.Component {
         this.handleCloseReleaseDialog();
     }
 
+    handleOpenDetails = (detailsPokemon) => this.setState({ openDetails: true, detailsPokemon })
+
+    handleCloseDetails = () => this.setState({ openDetails:false, detailsPokemon: null });
+
     render() {
         const { onSearch, isFetching } = this.props;
-        const { openReleaseDialog, releasePokemon } = this.state;
+        const { openReleaseDialog, releasePokemon, openDetails, detailsPokemon } = this.state;
 
         return (
             <div>
                 <PokemonSearch onSearch={onSearch} isFetching={isFetching} />
 
-                <PokemonGrid onRelease={this.handleReleaseRequest} />
+                <PokemonGrid onSeeDetails={this.handleOpenDetails} onRelease={this.handleReleaseRequest} />
 
                 <ReleasePokemonConfirmDialog 
                     open={openReleaseDialog} 
                     name={releasePokemon ? releasePokemon.name : null}
                     onConfirm={this.handleReleaseConfirm}
                     onClose={this.handleCloseReleaseDialog}
+                />
+
+                <PokemonDetailsDialog
+                    open={openDetails}
+                    pokemon={detailsPokemon}
+                    onClose={this.handleCloseDetails}
                 />
             </div>
         );

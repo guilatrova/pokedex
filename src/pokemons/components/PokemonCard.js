@@ -17,7 +17,7 @@ const styles = {
     }
 };
 
-const PokemonCard = ({ number, name, types, image, classes, onRelease }) => {
+const PokemonCard = ({ number, name, types, image, classes, onRelease, onSeeDetails }) => {
     return (
         <Card className={classes.card}>
 
@@ -34,7 +34,7 @@ const PokemonCard = ({ number, name, types, image, classes, onRelease }) => {
             </CardContent>
 
             <CardActions>
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" onClick={onSeeDetails}>
                     DETAILS
                 </Button>
                 <Button size="small" color="primary" onClick={onRelease}>
@@ -51,7 +51,8 @@ PokemonCard.propTypes = {
     types: PropTypes.array.isRequired,
     image: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired,
-    onRelease: PropTypes.func.isRequired
+    onRelease: PropTypes.func.isRequired,
+    onSeeDetails: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(PokemonCard);
