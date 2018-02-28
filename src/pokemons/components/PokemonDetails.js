@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 
 import StatsTable from './StatsTable';
 import TypeChip from './TypeChip';
+import AbilityChip from './AbilityChip';
 
 const styles = {
     float: {
@@ -48,9 +49,7 @@ const PokemonDetails = ({ pokemon, classes }) => {
                     Abilities
                 </Typography>
 
-                <Typography variant="subheading">
-                    {pokemon.abilities.map(t => t.ability.name + ",")}
-                </Typography>
+                {pokemon.abilities.map(ability => <AbilityChip key={ability.slot} label={ability.ability.name} />)}
             </Grid>
 
             <Grid item>
