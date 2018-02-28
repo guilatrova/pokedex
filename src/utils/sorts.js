@@ -2,10 +2,6 @@ function isNumeric(a) {
     return !isNaN(a);
 }
 
-// function isString(a) {
-//     return (typeof a === 'string' || a instanceof String);
-// }
-
 export function sort(a, b, order) {
     if(isNumeric(a) && isNumeric(b)) {
         if (order === 'asc')

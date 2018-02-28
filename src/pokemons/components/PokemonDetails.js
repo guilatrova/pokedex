@@ -5,6 +5,8 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 
+import StatsTable from './StatsTable';
+
 const styles = {
     float: {
         float: 'left'
@@ -52,9 +54,7 @@ const PokemonDetails = ({ pokemon, classes }) => {
                     Stats
                 </Typography>
 
-                <Typography variant="subheading">
-                    {pokemon.stats.map(s => s.stat.name + ": " + s.base_stat)}
-                </Typography>
+                <StatsTable stats={pokemon.stats} />
             </Grid>
         </Grid>
     );
