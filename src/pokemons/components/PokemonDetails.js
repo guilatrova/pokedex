@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -8,6 +9,7 @@ import Typography from 'material-ui/Typography';
 import StatsTable from './StatsTable';
 import TypeChip from './TypeChip';
 import AbilityChip from './AbilityChip';
+import { operations, selectors } from '../duck';
 
 const styles = {
     float: {
@@ -15,7 +17,7 @@ const styles = {
     }
 };
 
-const PokemonDetails = ({ pokemon, classes }) => {
+const PokemonDetails = ({ pokemon, classes, onFetchAbility }) => {
     //Stat doesnt have id prop, so we need to set it to avoid errors
     const stats = pokemon.stats.map((s, id) => ({ id, ...s }));
 
@@ -49,7 +51,9 @@ const PokemonDetails = ({ pokemon, classes }) => {
                     Abilities
                 </Typography>
 
-                {pokemon.abilities.map(ability => <AbilityChip key={ability.slot} label={ability.ability.name} />)}
+                {pokemon.abilities.map(ability => 
+                    <AbilityChip key={ability.slot} label={ability.ability.name} onClick={() => onFetchAbility(ability)} />)
+                }
             </Grid>
         </Grid>
     );
@@ -57,7 +61,23 @@ const PokemonDetails = ({ pokemon, classes }) => {
 
 PokemonDetails.propTypes = {
     pokemon: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    abilitiesDescriptions: PropTypes.array.isRequired,
+    onFetchAbility: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(PokemonDetails);
+const mapStateToProps = state => {
+    return {
+        abilitiesDescriptions: selectors.getAbilitiesDescriptionsMappedById(state)
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchAbility: (ability) => dispatch(operations.fetchAbility(ability))
+    };
+};
+
+export default withStyles(styles)(
+    connect(mapStateToProps, mapDispatchToProps)(PokemonDetails)
+);
