@@ -14,6 +14,9 @@ const styles = {
 };
 
 const PokemonDetails = ({ pokemon, classes }) => {
+    //Stat doesnt have id prop, so we need to set it to avoid errors
+    const stats = pokemon.stats.map((s, id) => ({ id, ...s }));
+
     return (
         <Grid container>
             <Grid item>
@@ -54,7 +57,7 @@ const PokemonDetails = ({ pokemon, classes }) => {
                     Stats
                 </Typography>
 
-                <StatsTable stats={pokemon.stats} />
+                <StatsTable stats={stats} />
             </Grid>
         </Grid>
     );

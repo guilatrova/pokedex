@@ -9,13 +9,11 @@ const renderName = (stat, field) => {
     return name.charAt(0).toUpperCase() + name.slice(1);
 };
 
-const onSortName = (a, b, order) => {
-    return sort(a.name, b.name, order);
-};
+const onSortName = (a, b, order) => sort(a.name, b.name, order);
 
 const StatsTable = ({ stats }) => {
     return (
-        <TableSort data={stats} initialOrderBy="base_stat">
+        <TableSort data={stats} initialOrderBy="stat">
             <DataColumn sortable field="stat" onRender={renderName} onSort={onSortName}>Name</DataColumn>
             <DataColumn sortable field="base_stat">Value</DataColumn>
         </TableSort>
