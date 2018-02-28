@@ -20,7 +20,8 @@ const styles = theme => ({
 class PokemonSearch extends React.Component {
     static propTypes = {
         onSearch: PropTypes.func.isRequired,
-        isFetching: PropTypes.bool.isRequired
+        isFetching: PropTypes.bool.isRequired,
+        classes: PropTypes.object.isRequired
     }
 
     state = {

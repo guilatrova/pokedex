@@ -1,11 +1,19 @@
 import PokemonSearch from './PokemonSearch';
 import Button from 'material-ui/Button';
 
+import { createShallow } from 'material-ui/test-utils';
+
 describe("<PokemonSearch />", () => {
     const defaultProps = {
         isFetching: false,
         onSearch: jest.fn()
     };
+
+    let shallow;
+
+    beforeAll(() => {
+        shallow = createShallow({ dive: true });
+    });
 
     it('renders ok', () => {
         const wrapper = shallow(<PokemonSearch {...defaultProps} />);
