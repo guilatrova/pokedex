@@ -5,6 +5,7 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import TypeChip from './TypeChip';
 
 const styles = {
     card: {
@@ -29,9 +30,7 @@ const PokemonCard = ({ number, name, types, image, classes, onRelease }) => {
                     # {number} {name}
                 </Typography>
 
-                <Typography component="p">
-                    {types.map(t => t + ",")}
-                </Typography>
+                {types.map((name, idx) => <TypeChip key={idx} label={name} />)}
             </CardContent>
 
             <CardActions>
