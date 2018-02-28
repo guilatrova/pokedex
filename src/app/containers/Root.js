@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import App from './App';
+import Theme from './Theme';
 
 export default class Root extends Component {
 	render() {
@@ -10,7 +11,9 @@ export default class Root extends Component {
 		return (
 			<Provider store={store}>
 				<ConnectedRouter history={history}>
-					<App />
+					<Theme>
+						<App />
+					</Theme>
 				</ConnectedRouter>
 			</Provider>
 		);
