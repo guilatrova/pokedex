@@ -36,6 +36,26 @@ const PokemonDetails = ({ pokemon, classes }) => {
                     Height: {pokemon.height}
                 </Typography>
             </Grid>
+
+            <Grid item>
+                <Typography variant="title" gutterBottom>
+                    Abilities
+                </Typography>
+
+                <Typography variant="subheading">
+                    {pokemon.abilities.map(t => t.ability.name + ",")}
+                </Typography>
+            </Grid>
+
+            <Grid item>
+                <Typography variant="title" gutterBottom>
+                    Stats
+                </Typography>
+
+                <Typography variant="subheading">
+                    {pokemon.stats.map(s => s.stat.name + ": " + s.base_stat)}
+                </Typography>
+            </Grid>
         </Grid>
     );
 };
