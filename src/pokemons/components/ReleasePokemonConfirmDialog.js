@@ -47,7 +47,7 @@ const ReleasePokemonConfirmDialog = ({ open, name, onConfirm, onClose}) => {
 
 ReleasePokemonConfirmDialog.propTypes = {
     open: PropTypes.bool.isRequired,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     onClose: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired
 };    
