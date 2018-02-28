@@ -6,6 +6,7 @@ import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 
 import StatsTable from './StatsTable';
+import TypeChip from './TypeChip';
 
 const styles = {
     float: {
@@ -27,7 +28,7 @@ const PokemonDetails = ({ pokemon, classes }) => {
                 </Typography>
 
                 <Typography className={classes.flaot} variant="subheading">
-                    {pokemon.types.map(t => t.type.name + ",")}
+                    {pokemon.types.map(type => <TypeChip key={type.slot} label={type.type.name} />)}
                 </Typography>
 
             </Grid>
