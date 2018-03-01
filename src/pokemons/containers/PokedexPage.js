@@ -69,7 +69,7 @@ class PokedexPage extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isFetching: selectors.isFetching(state),
-        pokemons: selectors.getPokemons(state)
+        pokemons: selectors.getOwnedPokemons(state)
     };
 };
 
