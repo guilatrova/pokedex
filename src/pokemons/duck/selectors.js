@@ -7,11 +7,17 @@ const getAbilitiesDescriptionsMappedById = state => state.pokemons.abilities.red
     return prev;
 }, []);
 
+const getPokemonsImagesMappedById = state => getPokemons(state).reduce((prev, pokemon) => {
+    prev[pokemon.id] = pokemon.sprites.front_default;
+    return prev;
+}, []);
+
 const getPokemonsOfType = (state, type) => state.pokemons.filteredTypePokemons[type] || [];
 
 export default {
-    getPokemons,
     isFetching,
+    getPokemons,
+    getPokemonsOfType,
     getAbilitiesDescriptionsMappedById,
-    getPokemonsOfType
+    getPokemonsImagesMappedById
 };

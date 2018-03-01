@@ -59,4 +59,21 @@ describe('pokemons/duck/selectors', () => {
             .toEqual([]);
         });
     });
+
+    it('getPokemonsImagesMappedById', () => {
+        const pokemons = [ 
+            { id: 25, name: 'pikachu', sprites: { front_default: "pikachu_image" } },
+            { id: 26, name: 'raichu', sprites: { front_default: "raichu_image" } },
+        ];
+        const expected = [];
+        expected[25] = "pikachu_image";
+        expected[26] = "raichu_image";
+
+        const state = buildState({ pokemons });
+
+        expect(
+            selectors.getPokemonsImagesMappedById(state)
+        )
+        .toEqual(expected);
+    });
 });

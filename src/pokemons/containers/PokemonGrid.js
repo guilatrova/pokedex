@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
+import { selectors } from '../duck';
 import PokemonCard from '../components/PokemonCard';
 import Grid from 'material-ui/Grid';
 
-const PokemonGrid = ({ pokemons, onRelease, onSeeDetails }) => {
+const PokemonGrid = ({ pokemons, images, onRelease, onSeeDetails }) => {
     const cards = pokemons.map(pokemon => {
         return (
             <Grid key={pokemon.id} item>
                 <PokemonCard
                     number={pokemon.id} 
                     name={pokemon.name} 
-                    image={pokemon.sprites ? pokemon.sprites.front_default : undefined}
+                    image={images[pokemon.id]}
                     types={pokemon.types ? pokemon.types.map(t => t.type.name) : []}
                     onRelease={() => onRelease(pokemon)}
                     onSeeDetails={() => onSeeDetails(pokemon)} />
@@ -30,8 +32,13 @@ const PokemonGrid = ({ pokemons, onRelease, onSeeDetails }) => {
 
 PokemonGrid.propTypes = {
     pokemons: PropTypes.array.isRequired,
+    images: PropTypes.array.isRequired,
     onRelease: PropTypes.func.isRequired,
     onSeeDetails: PropTypes.func.isRequired
 };
 
-export default PokemonGrid;
+const mapStateToProps = state => ({
+    images: selectors.getPokemonsImagesMappedById(state)
+});
+
+export default connect(mapStateToProps)(PokemonGrid);
