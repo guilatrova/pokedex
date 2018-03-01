@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { operations, selectors } from '../duck';
-import PokemonGrid from './PokemonGrid';
+import BasePokemonPageWrapper from './BasePokemonPageWrapper';
 
 class FindPokemonPage extends React.Component {
     static propTypes = {
@@ -22,13 +22,9 @@ class FindPokemonPage extends React.Component {
 
         return (
             <div>
-                <h1>{type}</h1>
-
-                <PokemonGrid
-                    pokemons={pokemons}
-                    onSeeDetails={() => {}}
-                    onRelease={() => {}}
-                />
+                <BasePokemonPageWrapper pokemons={pokemons}>
+                    <h1>{type}</h1>
+                </BasePokemonPageWrapper>
             </div>
         );
     }

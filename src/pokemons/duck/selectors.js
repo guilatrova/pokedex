@@ -35,9 +35,9 @@ const getPokemonsImagesMappedById = state => getPokemons(state).reduce((prev, po
 
 const getPokemonsOfType = (state, type) => {
     const pokemons = state.pokemons.filteredTypePokemons[type];
-    const ownedPokemons = getOwnedPokemons(state);
+    const knownPokemons = getPokemons(state);
     if (pokemons) {        
-        return pokemons.map(pkm => ownedPokemons.find(owned => owned.name == pkm.name) || pkm);
+        return pokemons.map(pkm => knownPokemons.find(owned => owned.name == pkm.name) || pkm);
     }
 
     return [];

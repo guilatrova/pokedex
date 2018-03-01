@@ -18,7 +18,7 @@ const PokemonCard = ({ pokemon, isKnown, isCaught, image, onCatch, onRelease, on
         return (
             <OwnedPokemonCard 
                 {...basicProps}
-                types={pokemon.types.map(t => t.type.name)}
+                types={pokemon.types ? pokemon.types.map(t => t.type.name) : []}
                 onRelease={onRelease}
                 onSeeDetails={onSeeDetails}
             />                
@@ -29,7 +29,7 @@ const PokemonCard = ({ pokemon, isKnown, isCaught, image, onCatch, onRelease, on
         return (
             <KnownPokemonCard
                 {...basicProps}
-                types={pokemon.types.map(t => t.type.name)}
+                types={pokemon.types ? pokemon.types.map(t => t.type.name) : []}
                 onCatch={onCatch}
                 onSeeDetails={onSeeDetails}
             />
