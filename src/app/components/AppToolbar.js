@@ -74,7 +74,7 @@ const AppToolbar = ({ classes, open, handleDrawerOpen }) => {
                     {title}
                 </Typography>
 
-                <IconButton color="contrast" onClick={openLink("https://github.com/guilatrova/pokedex")}>
+                <IconButton color="default" onClick={openLink("https://github.com/guilatrova/pokedex")}>
                     <GithubIcon />
                 </IconButton>
             </Toolbar>
