@@ -49,20 +49,25 @@ describe('pokemons/duck/selectors', () => {
     });
 
     describe('getPokemonsOfType', () => {
-        it('when type exists', () => {
-            const pokemons = [ { name: 'pikachu '} ];
-            const filteredTypePokemons = { electric: pokemons };
-            const state = buildState({ filteredTypePokemons });
+        it('should map available pokemon', () => {
+            const knownPokemon = { id: 25, name: 'pikachu' };
+            const unkownPokemon = { id: 50, name: 'jolteon' };
+            const pokemons = [ {...knownPokemon, types: { name: 'electric' }} ];
+            const filteredPokemons = [ knownPokemon, unkownPokemon ];
+            const filteredTypePokemons = { electric: filteredPokemons };
+            const expected = [ ...pokemons, unkownPokemon ];
+
+            const state = buildState({ filteredTypePokemons, owned: [ 25 ], pokemons });
 
             expect(
                 selectors.getPokemonsOfType(state, 'electric')
             )
-            .toEqual(pokemons);
+            .toEqual(expected);
 
         });
 
         it('when type doesnt exists', () => {
-            const state = buildState({ filteredTypePokemons: {} });
+            const state = buildState({ filteredTypePokemons: {}, owned: [], pokemons: [] });
             expect(
                 selectors.getPokemonsOfType(state, 'electric')
             )

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { operations, selectors } from '../duck';
-import { extractIdFromUrl } from '../../utils/query';
 import PokemonGrid from './PokemonGrid';
 
 class FindPokemonPage extends React.Component {
@@ -26,7 +25,7 @@ class FindPokemonPage extends React.Component {
                 <h1>{type}</h1>
 
                 <PokemonGrid
-                    pokemons={pokemons.map(pkm => ({ id: extractIdFromUrl(pkm.url), ...pkm }))}
+                    pokemons={pokemons}
                     onSeeDetails={() => {}}
                     onRelease={() => {}}
                 />

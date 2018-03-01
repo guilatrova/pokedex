@@ -1,4 +1,5 @@
 import types from './types';
+import { extractIdFromUrl } from '../../utils/query';
 
 const initialState = {
     pokemons: [],
@@ -76,7 +77,7 @@ function fetchPokemonsByTypeReducer(state, action) {
                 isFetching: false,
                 filteredTypePokemons: {
                     ...state.filteredTypePokemons,
-                    [type]: action.pokemonsByType.pokemon.map(parent => parent.pokemon)
+                    [type]: action.pokemonsByType.pokemon.map(parent => ({ id: extractIdFromUrl(parent.pokemon.url), ...parent.pokemon }))
                 }
             };
         }

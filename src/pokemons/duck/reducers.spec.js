@@ -147,8 +147,8 @@ describe('pokemons/duck/reducers', () => {
                 id: 1,
                 name: 'electric',
                 pokemon: [
-                    { pokemon: createPokemon('pikachu') },
-                    { pokemon: createPokemon('jolten') }
+                    { pokemon: { ...createPokemon('pikachu'), url: 'api/25/'} },
+                    { pokemon: { ...createPokemon('jolten'), url: 'api/50/'} }
                 ]
             };
 
@@ -158,8 +158,8 @@ describe('pokemons/duck/reducers', () => {
                 ...initialState,
                 filteredTypePokemons: {
                     'electric': [
-                        createPokemon('pikachu'),
-                        createPokemon('jolten')
+                        { id: 25, url: 'api/25/', ...createPokemon('pikachu') },
+                        { id: 50, url: 'api/50/', ...createPokemon('jolten') }
                     ]
                 },
                 isFetching: false,

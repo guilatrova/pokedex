@@ -56,7 +56,8 @@ BasePokemonCard.propTypes = {
 };
 
 BasePokemonCard.defaultProps = {
-    image: "http://via.placeholder.com/96x96"
+    image: "http://via.placeholder.com/96x96",
+    actions: []
 };
 
 export default withStyles(styles)(BasePokemonCard);
