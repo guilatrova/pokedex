@@ -1,7 +1,6 @@
 /* Variables */
-$vin-blue: #5bb7db;
-$vin-green: #60b044;
-$vin-red: #ff0000;
+$profile-header-color: #fff;
+$profile-title-color: black;
 
 /* Styles */
 html, body {
@@ -14,4 +13,23 @@ a {
 
 * {
   font-family: 'Roboto', sans-serif;
+}
+
+.profile-header {
+  background-image: url("pokeball-back2.jpg");
+  background-size:100%;
+}
+
+.profile-header h2 {
+  color: $profile-header-color;
+  text-shadow: 2px 2px 3px black;
+}
+
+.profile-header h3 {
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.top-app-bar {
+  border-bottom: solid 5px #181818;
 }

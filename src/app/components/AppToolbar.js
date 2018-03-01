@@ -18,7 +18,8 @@ const styles = theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        flexGrow: 1
+        flexGrow: 1,
+        minHeight: 85
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -48,7 +49,7 @@ const styles = theme => ({
 const AppToolbar = ({ classes, open, handleDrawerOpen }) => {
     return (
         <AppBar 
-            className={classNames(classes.appBar, {
+            className={classNames(classes.appBar, 'top-app-bar', {
                 [classes.appBarShift]: open,
                 [classes[`appBarShift-${anchor}`]]: open,
             })}
