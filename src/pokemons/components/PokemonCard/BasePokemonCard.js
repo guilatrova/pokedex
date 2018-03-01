@@ -36,7 +36,7 @@ const BasePokemonCard = ({ number, name, types, image, classes, actions }) => {
             <CardActions>
                 {actions.map((action, idx) => {
                     return (
-                        <Button key={idx} size="small" color="primary" onClick={action.onClick}>
+                        <Button key={idx} size="small" color="primary" onClick={action.onClick} disabled={action.disabled}>
                             {action.label}
                         </Button>
                     );

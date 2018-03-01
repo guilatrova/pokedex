@@ -7,7 +7,7 @@ import OwnedPokemonCard from './OwnedPokemonCard';
 import KnownPokemonCard from './KnownPokemonCard';
 import UnknownPokemonCard from './UnknownPokemonCard';
 
-const PokemonCard = ({ pokemon, isKnown, isCaught, image, onCatch, onRelease, onSeeDetails, onFind }) => {
+const PokemonCard = ({ pokemon, isKnown, isCaught, image, isFetching, onCatch, onRelease, onSeeDetails, onFind }) => {
     const basicProps = {
         number: pokemon.id,
         name: pokemon.name,
@@ -40,6 +40,7 @@ const PokemonCard = ({ pokemon, isKnown, isCaught, image, onCatch, onRelease, on
         <UnknownPokemonCard
             {...basicProps}
             onFind={onFind}
+            isFetching={isFetching}
         />
     );
 };
@@ -55,15 +56,13 @@ PokemonCard.propTypes = {
     onFind: PropTypes.func
 };
 
-PokemonCard.defaultProps = {    
-};
-
 const mapStateToProps = (state, ownProps) => {
     const { pokemon } = ownProps;
     return {
         image: selectors.getPokemonImage(state, pokemon.id),
         isCaught: selectors.isPokemonCaught(state, pokemon.id),
-        isKnown: selectors.isPokemonKnown(state, pokemon.id)
+        isKnown: selectors.isPokemonKnown(state, pokemon.id),
+        isFetching: selectors.isFetching(state)
     };
 };
 
