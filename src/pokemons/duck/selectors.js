@@ -7,7 +7,7 @@ const getAbilitiesDescriptionsMappedById = state => state.pokemons.abilities.red
     return prev;
 }, []);
 
-const getPokemonsOfType = (state, type) => state.pokemons.filteredTypePokemons[type];
+const getPokemonsOfType = (state, type) => state.pokemons.filteredTypePokemons[type] || [];
 
 export default {
     getPokemons,

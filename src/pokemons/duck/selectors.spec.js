@@ -38,5 +38,25 @@ describe('pokemons/duck/selectors', () => {
         .toEqual(expected);
     });
 
-    it('getPokemonsOfType');
+    describe('getPokemonsOfType', () => {
+        it('when type exists', () => {
+            const pokemons = [ { name: 'pikachu '} ];
+            const filteredTypePokemons = { electric: pokemons };
+            const state = buildState({ filteredTypePokemons });
+
+            expect(
+                selectors.getPokemonsOfType(state, 'electric')
+            )
+            .toEqual(pokemons);
+
+        });
+
+        it('when type doesnt exists', () => {
+            const state = buildState({ filteredTypePokemons: {} });
+            expect(
+                selectors.getPokemonsOfType(state, 'electric')
+            )
+            .toEqual([]);
+        });
+    });
 });
