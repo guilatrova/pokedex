@@ -9,8 +9,10 @@ export class Operation {
     }
 
     dispatch = () => (dispatch, getState) => {
-        if (!this.shouldDispatch(getState))
+        if (!this.shouldDispatch(getState)) {
+            this.onNotDispatched(dispatch, getState);
             return Promise.resolve();
+        }
 
         this.onRequest(dispatch, this.requestAction);
         
@@ -24,6 +26,8 @@ export class Operation {
     shouldDispatch(getState) {
         return true;
     }
+
+    onNotDispatched(dispatch, getState) { } 
 
     createApiService() {
         return createApi();

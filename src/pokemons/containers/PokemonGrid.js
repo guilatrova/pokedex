@@ -12,7 +12,7 @@ const PokemonGrid = ({ pokemons, onRelease, onSeeDetails, onFind, onCatch }) => 
                     pokemon={pokemon}
                     onRelease={() => onRelease(pokemon)}
                     onSeeDetails={() => onSeeDetails(pokemon)}
-                    onCatch={() => onCatch(pokemon)}
+                    onCatch={() => onCatch(pokemon.id)}
                     onFind={() => onFind(pokemon.id)} 
                 />
             </Grid>

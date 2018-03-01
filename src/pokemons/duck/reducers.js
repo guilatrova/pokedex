@@ -100,14 +100,23 @@ function removePokemonReducer(state, id) {
     };
 }
 
-function catchPokemonReducer(state, pokemon) {
-    return {
-        ...state,
-        owned: [
-            ...state.owned,
-            pokemon.id
-        ]
-    };
+function catchPokemonReducer(state, id) {    
+    if (isNaN(id)) {
+        id = state.pokemons.find(pkm => pkm.name == id).id;
+    }
+    id = parseInt(id);    
+
+    if (!state.owned.includes(id)) {
+        return {
+            ...state,
+            owned: [
+                ...state.owned,
+                id
+            ]
+        };
+    }
+
+    return state;
 }
 
 export default function reducer(state = initialState, action) {
@@ -116,7 +125,7 @@ export default function reducer(state = initialState, action) {
             return fetchPokemonReducer(state, action);
 
         case types.CATCH_POKEMON:
-            return catchPokemonReducer(state, action.pokemon);
+            return catchPokemonReducer(state, action.id);
 
         case types.RELEASE_POKEMON:
             return removePokemonReducer(state, action.id);

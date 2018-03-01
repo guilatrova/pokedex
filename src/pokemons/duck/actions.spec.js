@@ -42,15 +42,16 @@ describe('pokemons/duck/actions', () => {
 
         it('should catch pokemon when successful if requested', () => {
             const pokemon = { id: 1, name: "bulbasaur" };
+            const id = 1;
             const expectedActions = [
                 { type: types.FETCH_POKEMON },
-                { type: types.CATCH_POKEMON, pokemon },
+                { type: types.CATCH_POKEMON, id },
                 { type: types.FETCH_POKEMON, result: 'success', pokemon}
             ];
 
             mock.onGet().reply(200, pokemon);
 
-            return store.dispatch(operations.fetchPokemon(1, true)).then(() => {
+            return store.dispatch(operations.fetchPokemon(id, true)).then(() => {
                 expect(store.getActions()).toEqual(expectedActions);
             });
         });
@@ -84,12 +85,12 @@ describe('pokemons/duck/actions', () => {
 
     describe("CATCH_POKEMON", () => {
         it('is created correctly', () => {
-            const pokemon = { id: 1, name: 'bulbasaur' };
+            const id = 1;
             const expectedAction = { 
-                type: types.CATCH_POKEMON, pokemon
+                type: types.CATCH_POKEMON, id
             };
 
-            expect(actions.catchPokemon(pokemon)).toEqual(expectedAction);
+            expect(actions.catchPokemon(id)).toEqual(expectedAction);
         });
     });
 

@@ -7,13 +7,20 @@ export class FetchPokemonOperation extends GetOperation {
         super(actions.fetchPokemon, actions.receivePokemon);
         this.search = search;
         this.caught = caught;
-    }    
+    }
+
+    shouldDispatch = (getState) => !selectors.isPokemonCached(getState(), this.search);
+
+    onNotDispatched = (dispatch) => {
+        if (this.caught)
+            dispatch(actions.catchPokemon(this.search));
+    }
 
     getEndpoint = () => `pokemon/${this.search}`;
 
     onSucceed(dispatch, receiveAction, data) {
         if (this.caught)
-            dispatch(actions.catchPokemon(data));
+            dispatch(actions.catchPokemon(data.id));
         return super.onSucceed(dispatch, receiveAction, data);
     }
 }

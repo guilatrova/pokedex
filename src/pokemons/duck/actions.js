@@ -22,10 +22,10 @@ const receivePokemon = (result, data) => {
     };
 };
 
-const catchPokemon = (pokemon) => {
+const catchPokemon = (id) => {
     return {
         type: types.CATCH_POKEMON,
-        pokemon
+        id
     };
 };
 

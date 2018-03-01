@@ -91,7 +91,6 @@ describe('pokemons/duck/reducers', () => {
 
     describe("CATCH_POKEMON", () => {
 
-        const createPokemon = (id, name) => ({ id, name });
         const somePokemonsState = {
             ...initialState,
             owned: [ 1, 25 ]
@@ -99,7 +98,7 @@ describe('pokemons/duck/reducers', () => {
 
         it('should add pokemon to owned list', () => {
             expect(
-                reducer(somePokemonsState, actions.catchPokemon(createPokemon(4, 'charmander')))
+                reducer(somePokemonsState, actions.catchPokemon(4))
             ).toEqual({
                 ...initialState,
                 owned: [ 1, 25, 4 ],
