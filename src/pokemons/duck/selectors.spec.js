@@ -12,6 +12,16 @@ describe('pokemons/duck/selectors', () => {
         .toEqual(pokemons);
     });
 
+    it('getOwnedPokemons', () => {
+        const pokemons = [ { id: 1, name: "bulbasaur" }, { id: 2, name: "ivysaur"}, { id: 3, name: "venusaur" } ];
+        const owned = [ 1, 2 ];
+        const state = buildState({ pokemons, owned });
+        expect(
+            selectors.getOwnedPokemons(state)
+        )
+        .toEqual([ pokemons[0], pokemons[1] ]);
+    });
+
     it('isFetching', () => {
         const isFetching = true;
         const state = buildState({ isFetching });
