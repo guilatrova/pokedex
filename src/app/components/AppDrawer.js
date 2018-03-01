@@ -70,7 +70,7 @@ const AppDrawer = ({ classes, theme, open, handleDrawerClose }) => {
                         <a href="https://www.linkedin.com/in/guilhermelatrova/" target="_blank">
                             <Avatar
                                 alt="Guilherme Latrova"
-                                src={require('../images/profile.jpg')}
+                                src={require('../../images/profile.jpg')}
                                 className={classes.avatar}
                             />
                         </a>
