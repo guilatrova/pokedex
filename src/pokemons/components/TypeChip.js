@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
+import { Link } from 'react-router-dom';
 import Chip from 'material-ui/Chip';
 
 const styles = theme => ({
@@ -12,7 +13,9 @@ const styles = theme => ({
 
 const TypeChip = ({ label, classes }) => {
     return (
-        <Chip label={label} className={classes.chip} />
+        <Link to={`/find/${label}`}>
+            <Chip label={label} className={classes.chip} onClick={() => {/* Force click pointer */}} />
+        </Link>
     );
 };
 
