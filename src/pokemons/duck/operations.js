@@ -3,15 +3,17 @@ import selectors from './selectors';
 import { GetOperation } from '../../common/duck/operations';
 
 export class FetchPokemonOperation extends GetOperation {
-    constructor(search) {
+    constructor(search, caught) {
         super(actions.fetchPokemon, actions.receivePokemon);
         this.search = search;
+        this.caught = caught;
     }    
 
     getEndpoint = () => `pokemon/${this.search}`;
 
     onSucceed(dispatch, receiveAction, data) {
-        dispatch(actions.catchPokemon(data));
+        if (this.caught)
+            dispatch(actions.catchPokemon(data));
         return super.onSucceed(dispatch, receiveAction, data);
     }
 }
@@ -38,7 +40,7 @@ export class FetchPokemonsByType extends GetOperation {
     getEndpoint = () => `type/${this.id}`;
 }
 
-const fetchPokemon = (search) => new FetchPokemonOperation(search).dispatch();
+const fetchPokemon = (search, caught=false) => new FetchPokemonOperation(search, caught).dispatch();
 const fetchAbility = (id) => new FetchAbilityOperation(id).dispatch();
 const fetchPokemonsByType = (id) => new FetchPokemonsByType(id).dispatch();
 const releasePokemon = actions.releasePokemon;

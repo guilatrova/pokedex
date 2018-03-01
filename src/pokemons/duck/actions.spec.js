@@ -30,13 +30,27 @@ describe('pokemons/duck/actions', () => {
             const pokemon = { id: 1, name: "bulbasaur" };
             const expectedActions = [
                 { type: types.FETCH_POKEMON },
-                { type: types.CATCH_POKEMON, pokemon },
                 { type: types.FETCH_POKEMON, result: 'success', pokemon}
             ];
 
             mock.onGet().reply(200, pokemon);
 
             return store.dispatch(operations.fetchPokemon(1)).then(() => {
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+
+        it('should catch pokemon when successful if requested', () => {
+            const pokemon = { id: 1, name: "bulbasaur" };
+            const expectedActions = [
+                { type: types.FETCH_POKEMON },
+                { type: types.CATCH_POKEMON, pokemon },
+                { type: types.FETCH_POKEMON, result: 'success', pokemon}
+            ];
+
+            mock.onGet().reply(200, pokemon);
+
+            return store.dispatch(operations.fetchPokemon(1, true)).then(() => {
                 expect(store.getActions()).toEqual(expectedActions);
             });
         });

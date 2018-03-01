@@ -33,7 +33,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSearch: (search) => dispatch(operations.fetchPokemon(search)),
+        onSearch: (search) => dispatch(operations.fetchPokemon(search, true)),
     };
 };
 
