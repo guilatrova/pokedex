@@ -2,6 +2,7 @@ import types from './types';
 
 const initialState = {
     pokemons: [],
+    owned: [],
     abilities: [],
     filteredTypePokemons: {},
     isFetching: false,
@@ -17,6 +18,10 @@ function fetchPokemonReducer(state, action) {
                 pokemons: [
                     ...state.pokemons,
                     action.pokemon
+                ],
+                owned: [
+                    ...state.owned,
+                    action.pokemon.id
                 ]
             };
 
@@ -94,7 +99,7 @@ function fetchPokemonsByTypeReducer(state, action) {
 function removePokemonReducer(state, id) {
     return {
         ...state,
-        pokemons: state.pokemons.filter(pkm => pkm.id  != id)
+        owned: state.owned.filter(pkm => pkm != id)
     };
 }
 

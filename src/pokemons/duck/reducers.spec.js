@@ -5,6 +5,7 @@ describe('pokemons/duck/reducers', () => {
 
     const initialState = {
         pokemons: [],
+        owned: [],
         abilities: [],
         filteredTypePokemons: {},
         isFetching: false,
@@ -31,6 +32,7 @@ describe('pokemons/duck/reducers', () => {
             ).toEqual({
                 ...initialState,
                 pokemons: [],
+                owned: [],
                 isFetching: true,
                 errors: {}
             });
@@ -43,6 +45,7 @@ describe('pokemons/duck/reducers', () => {
             ).toEqual({
                 ...initialState,
                 pokemons: [ data ],
+                owned: [ 1 ],
                 isFetching: false,
                 errors: {}
             });
@@ -55,6 +58,7 @@ describe('pokemons/duck/reducers', () => {
             ).toEqual({
                 ...initialState,
                 pokemons: [],
+                owned: [],
                 isFetching: false,
                 errors
             });
@@ -67,7 +71,8 @@ describe('pokemons/duck/reducers', () => {
         const createPokemon = (id, name) => ({ id, name });
         const somePokemonsState = {
             ...initialState,
-            pokemons: [ createPokemon(1, 'bulbasaur'), createPokemon(25, 'pikachu') ]
+            pokemons: [ createPokemon(1, 'bulbasaur'), createPokemon(25, 'pikachu') ],
+            owned: [ 1, 25 ]
         };
 
         it('should remove pokemon from list', () => {
@@ -75,7 +80,8 @@ describe('pokemons/duck/reducers', () => {
                 reducer(somePokemonsState, actions.releasePokemon(25))
             ).toEqual({
                 ...initialState,
-                pokemons: [ createPokemon(1, 'bulbasaur') ],
+                pokemons: [ createPokemon(1, 'bulbasaur'), createPokemon(25, 'pikachu') ],
+                owned: [ 1 ],
                 isFetching: false,
                 errors: {}
             });
