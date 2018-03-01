@@ -45,7 +45,7 @@ describe('pokemons/duck/reducers', () => {
             ).toEqual({
                 ...initialState,
                 pokemons: [ data ],
-                owned: [ 1 ],
+                owned: [],
                 isFetching: false,
                 errors: {}
             });
@@ -82,6 +82,27 @@ describe('pokemons/duck/reducers', () => {
                 ...initialState,
                 pokemons: [ createPokemon(1, 'bulbasaur'), createPokemon(25, 'pikachu') ],
                 owned: [ 1 ],
+                isFetching: false,
+                errors: {}
+            });
+        });
+
+    });
+
+    describe("CATCH_POKEMON", () => {
+
+        const createPokemon = (id, name) => ({ id, name });
+        const somePokemonsState = {
+            ...initialState,
+            owned: [ 1, 25 ]
+        };
+
+        it('should add pokemon to owned list', () => {
+            expect(
+                reducer(somePokemonsState, actions.catchPokemon(createPokemon(4, 'charmander')))
+            ).toEqual({
+                ...initialState,
+                owned: [ 1, 25, 4 ],
                 isFetching: false,
                 errors: {}
             });

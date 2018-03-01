@@ -22,6 +22,13 @@ const receivePokemon = (result, data) => {
     };
 };
 
+const catchPokemon = (pokemon) => {
+    return {
+        type: types.CATCH_POKEMON,
+        pokemon
+    };
+};
+
 const releasePokemon = (id) => {
     return {
         type: types.RELEASE_POKEMON,
@@ -76,6 +83,7 @@ const receivePokemonsByType = (result, data) => {
 export default {
     fetchPokemon,
     receivePokemon,
+    catchPokemon,
     releasePokemon,
     fetchAbility,
     receiveAbility,

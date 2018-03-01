@@ -9,6 +9,11 @@ export class FetchPokemonOperation extends GetOperation {
     }    
 
     getEndpoint = () => `pokemon/${this.search}`;
+
+    onSucceed(dispatch, receiveAction, data) {
+        dispatch(actions.catchPokemon(data));
+        return super.onSucceed(dispatch, receiveAction, data);
+    }
 }
 
 export class FetchAbilityOperation extends GetOperation {
@@ -37,10 +42,12 @@ const fetchPokemon = (search) => new FetchPokemonOperation(search).dispatch();
 const fetchAbility = (id) => new FetchAbilityOperation(id).dispatch();
 const fetchPokemonsByType = (id) => new FetchPokemonsByType(id).dispatch();
 const releasePokemon = actions.releasePokemon;
+const catchPokemon = actions.catchPokemon;
 
 export default {
     fetchPokemon,
     fetchAbility,
     fetchPokemonsByType,
-    releasePokemon
+    releasePokemon,
+    catchPokemon
 };

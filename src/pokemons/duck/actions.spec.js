@@ -30,6 +30,7 @@ describe('pokemons/duck/actions', () => {
             const pokemon = { id: 1, name: "bulbasaur" };
             const expectedActions = [
                 { type: types.FETCH_POKEMON },
+                { type: types.CATCH_POKEMON, pokemon },
                 { type: types.FETCH_POKEMON, result: 'success', pokemon}
             ];
 
@@ -64,6 +65,17 @@ describe('pokemons/duck/actions', () => {
             };
 
             expect(actions.releasePokemon(id)).toEqual(expectedAction);
+        });
+    });
+
+    describe("CATCH_POKEMON", () => {
+        it('is created correctly', () => {
+            const pokemon = { id: 1, name: 'bulbasaur' };
+            const expectedAction = { 
+                type: types.CATCH_POKEMON, pokemon
+            };
+
+            expect(actions.catchPokemon(pokemon)).toEqual(expectedAction);
         });
     });
 

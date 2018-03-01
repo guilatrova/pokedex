@@ -19,10 +19,6 @@ function fetchPokemonReducer(state, action) {
                 pokemons: [
                     ...state.pokemons,
                     action.pokemon
-                ],
-                owned: [
-                    ...state.owned,
-                    action.pokemon.id
                 ]
             };
 
@@ -104,10 +100,23 @@ function removePokemonReducer(state, id) {
     };
 }
 
+function catchPokemonReducer(state, pokemon) {
+    return {
+        ...state,
+        owned: [
+            ...state.owned,
+            pokemon.id
+        ]
+    };
+}
+
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case types.FETCH_POKEMON:
             return fetchPokemonReducer(state, action);
+
+        case types.CATCH_POKEMON:
+            return catchPokemonReducer(state, action.pokemon);
 
         case types.RELEASE_POKEMON:
             return removePokemonReducer(state, action.id);
