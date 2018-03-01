@@ -12,7 +12,8 @@ class PokedexPage extends React.Component {
     static propTypes = {
         onSearch: PropTypes.func.isRequired,
         isFetching: PropTypes.bool.isRequired,
-        onRelease: PropTypes.func.isRequired
+        onRelease: PropTypes.func.isRequired,
+        pokemons: PropTypes.array.isRequired
     }
 
     state = {
@@ -36,14 +37,17 @@ class PokedexPage extends React.Component {
     handleCloseDetails = () => this.setState({ openDetails:false, detailsPokemon: null });
 
     render() {
-        const { onSearch, isFetching } = this.props;
+        const { onSearch, isFetching, pokemons } = this.props;
         const { openReleaseDialog, releasePokemon, openDetails, detailsPokemon } = this.state;
 
         return (
             <div>
                 <PokemonSearch onSearch={onSearch} isFetching={isFetching} />
 
-                <PokemonGrid onSeeDetails={this.handleOpenDetails} onRelease={this.handleReleaseRequest} />
+                <PokemonGrid 
+                    pokemons={pokemons}                
+                    onSeeDetails={this.handleOpenDetails} 
+                    onRelease={this.handleReleaseRequest} />
 
                 <ReleasePokemonConfirmDialog 
                     open={openReleaseDialog} 
@@ -64,7 +68,8 @@ class PokedexPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isFetching: selectors.isFetching(state)
+        isFetching: selectors.isFetching(state),
+        pokemons: selectors.getPokemons(state)
     };
 };
 

@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { selectors } from '../duck';
 
 import PokemonCard from '../components/PokemonCard';
 import Grid from 'material-ui/Grid';
@@ -36,10 +34,4 @@ PokemonGrid.propTypes = {
     onSeeDetails: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
-    return {
-        pokemons: selectors.getPokemons(state)
-    };
-};
-
-export default connect(mapStateToProps)(PokemonGrid);
+export default PokemonGrid;
