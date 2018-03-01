@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import AppBody from './AppBody';
 import PokedexPage from '../../pokemons/containers/PokedexPage';
+import FindPokemonPage from '../../pokemons/containers/FindPokemonPage';
 
 const NotFoundPage = () => <p>Not found</p>;
 
@@ -23,6 +24,7 @@ export default class App extends React.Component {
 					<Switch>
 
 						<Route exact path="/" component={PokedexPage} />
+						<Route exact path="/find/:type" component={FindPokemonPage} />
 						<Route component={NotFoundPage} />
 
 					</Switch>

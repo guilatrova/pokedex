@@ -55,4 +55,8 @@ PokemonCard.propTypes = {
     onSeeDetails: PropTypes.func.isRequired,
 };
 
+PokemonCard.defaultProps = {
+    image: "http://via.placeholder.com/96x96"
+};
+
 export default withStyles(styles)(PokemonCard);

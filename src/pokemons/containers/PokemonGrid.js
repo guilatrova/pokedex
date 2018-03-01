@@ -11,8 +11,8 @@ const PokemonGrid = ({ pokemons, onRelease, onSeeDetails }) => {
                 <PokemonCard
                     number={pokemon.id} 
                     name={pokemon.name} 
-                    image={pokemon.sprites.front_default}
-                    types={pokemon.types.map(t => t.type.name)}
+                    image={pokemon.sprites ? pokemon.sprites.front_default : undefined}
+                    types={pokemon.types ? pokemon.types.map(t => t.type.name) : []}
                     onRelease={() => onRelease(pokemon)}
                     onSeeDetails={() => onSeeDetails(pokemon)} />
             </Grid>
