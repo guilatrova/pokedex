@@ -60,7 +60,7 @@ const styles = theme => ({
 
 class AppBody extends React.Component {
     state = {
-        open: false,
+        open: true,
     };
     
     handleDrawerOpen = () => this.setState({ open: true });
