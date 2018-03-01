@@ -9,7 +9,7 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Slide from 'material-ui/transitions/Slide';
 
-import PokemonDetails from '../components/PokemonDetails';
+import PokemonDetails from './PokemonDetails';
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;

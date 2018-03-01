@@ -8,10 +8,10 @@ import Typography from 'material-ui/Typography';
 
 import { extractIdFromUrl } from '../../utils/query';
 import { operations, selectors } from '../duck';
-import StatsTable from './StatsTable';
-import TypeChip from './TypeChip';
-import AbilityChip from './AbilityChip';
-import AbilityDescription from './AbilityDescription';
+import StatsTable from '../components/StatsTable';
+import TypeChip from '../components/TypeChip';
+import AbilityChip from '../components/AbilityChip';
+import AbilityDescription from '../components/AbilityDescription';
 
 const styles = {
     float: {

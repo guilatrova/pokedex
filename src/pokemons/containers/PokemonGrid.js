@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { selectors } from '../duck';
-import PokemonCard from '../components/PokemonCard';
+import OwnedPokemonCard from '../components/OwnedPokemonCard';
 import Grid from 'material-ui/Grid';
 
 const PokemonGrid = ({ pokemons, images, onRelease, onSeeDetails }) => {
     const cards = pokemons.map(pokemon => {
         return (
             <Grid key={pokemon.id} item>
-                <PokemonCard
+                <OwnedPokemonCard
                     number={pokemon.id} 
                     name={pokemon.name} 
                     image={images[pokemon.id]}
