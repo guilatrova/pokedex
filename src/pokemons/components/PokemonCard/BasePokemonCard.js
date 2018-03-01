@@ -5,7 +5,7 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-import TypeChip from './TypeChip';
+import TypeChip from '../TypeChip';
 
 const styles = {
     card: {
@@ -57,7 +57,8 @@ BasePokemonCard.propTypes = {
 
 BasePokemonCard.defaultProps = {
     image: "http://via.placeholder.com/96x96",
-    actions: []
+    actions: [],
+    types: []
 };
 
 export default withStyles(styles)(BasePokemonCard);

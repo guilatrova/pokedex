@@ -18,16 +18,9 @@ const OwnedPokemonCard = ({ onRelease, onSeeDetails, ...props}) => {
 };
 
 OwnedPokemonCard.propTypes = {
-    number: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    types: PropTypes.array.isRequired,
-    image: PropTypes.string.isRequired,
+    ...BasePokemonCard.propTypes,
     onRelease: PropTypes.func.isRequired,
     onSeeDetails: PropTypes.func.isRequired,
-};
-
-OwnedPokemonCard.defaultProps = {
-    image: "http://via.placeholder.com/96x96"
 };
 
 export default OwnedPokemonCard;

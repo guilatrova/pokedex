@@ -1,6 +1,14 @@
 const getPokemons = state => state.pokemons.pokemons;
 
+const getPokemonsIds = state => state.pokemons.pokemons.map(pkm => pkm.id);
+
 const isFetching = state => state.pokemons.isFetching;
+
+const isPokemonKnown = (state, id) => getPokemonsIds(state).includes(id);
+
+const isPokemonCaught = (state, id) => getOwnedPokemonsIds(state).includes(id);
+
+const getPokemonImage = (state, id) => getPokemonsImagesMappedById(state)[id];
 
 const getOwnedPokemons = state => getPokemons(state).filter(pkm => state.pokemons.owned.includes(pkm.id));
 
@@ -39,8 +47,12 @@ export default {
     isFetching,
     isPokemonCached,
     isAbilityCached,
+    isPokemonKnown,
+    isPokemonCaught,
     isPokemonsByTypeCached,
     getPokemons,
+    getPokemonImage,
+    getPokemonsIds,
     getOwnedPokemons,
     getOwnedPokemonsIds,
     getPokemonsOfType,
