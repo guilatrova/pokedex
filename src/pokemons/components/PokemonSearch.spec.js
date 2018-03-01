@@ -20,8 +20,9 @@ describe("<PokemonSearch />", () => {
         expect(wrapper).toBeTruthy();
     });
 
-    it('button should be enabled when no fetching', () => {
+    it('button should be enabled when no fetching and search box is filled', () => {
         const wrapper = shallow(<PokemonSearch {...defaultProps} />);
+        wrapper.setState({ search: "pikachu" });
         expect(wrapper.find(Button).prop('disabled')).toBeFalsy();
     });
 
