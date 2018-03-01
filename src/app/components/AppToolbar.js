@@ -9,6 +9,7 @@ import Typography from 'material-ui/Typography';
 import MenuIcon from 'material-ui-icons/Menu';
 import IconButton from 'material-ui/IconButton';
 
+import GithubIcon from '../../common/components/GithubIcon';
 import { drawerWidth, anchor, title } from '../contants';
 
 const styles = theme => ({
@@ -19,7 +20,7 @@ const styles = theme => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         flexGrow: 1,
-        minHeight: 85
+        minHeight: 85,
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -46,6 +47,8 @@ const styles = theme => ({
     }
 });
 
+const openLink = (link) => () => window.open(link, "_blank");
+
 const AppToolbar = ({ classes, open, handleDrawerOpen }) => {
     return (
         <AppBar 
@@ -67,6 +70,10 @@ const AppToolbar = ({ classes, open, handleDrawerOpen }) => {
                 <Typography variant="title" color="inherit" className={classes.title} noWrap>
                     {title}
                 </Typography>
+
+                <IconButton color="contrast" onClick={openLink("https://github.com/guilatrova/pokedex")}>
+                    <GithubIcon />
+                </IconButton>
             </Toolbar>
         </AppBar>
     );
