@@ -16,6 +16,12 @@ class FindPokemonPage extends React.Component {
         this.props.fetchByType(this.props.type);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.type !== nextProps.type) {
+            this.props.fetchByType(nextProps.type);
+        }
+    }
+
     render() {
         const { type, pokemons } = this.props;
         
