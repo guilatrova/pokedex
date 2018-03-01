@@ -21,6 +21,9 @@ const styles = theme => ({
         }),
         flexGrow: 1,
         minHeight: 85,
+        display: 'flex',
+        justifyContent: 'center',
+        paddingRight: 10
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
