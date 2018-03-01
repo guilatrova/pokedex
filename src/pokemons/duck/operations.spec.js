@@ -1,4 +1,4 @@
-import { FetchPokemonOperation, FetchAbilityOperation } from './operations';
+import { FetchPokemonOperation, FetchAbilityOperation, FetchPokemonsByType } from './operations';
 
 describe('pokemons/duck/operations', () => {
 
@@ -13,6 +13,13 @@ describe('pokemons/duck/operations', () => {
         it('generates correct api endpoint', () => {
             const operation = new FetchAbilityOperation(65);
             expect(operation.getEndpoint()).toMatch("ability/65");
+        });
+    });
+
+    describe('FetchPokemonsByType', () => {
+        it('generates correct api endpoint', () => {
+            const operation = new FetchPokemonsByType(50);
+            expect(operation.getEndpoint()).toMatch("type/50");
         });
     });
 

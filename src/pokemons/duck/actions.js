@@ -31,7 +31,7 @@ const releasePokemon = (id) => {
 
 const fetchAbility = () => {
     return {
-        type: types.FETCH_ABILITY        
+        type: types.FETCH_ABILITY
     };
 };
 
@@ -51,10 +51,34 @@ const receiveAbility = (result, data) => {
     };
 };
 
+const fetchPokemonsByType = () => {
+    return {
+        type: types.FETCH_POKEMONS_BY_TYPE
+    };
+};
+
+const receivePokemonsByType = (result, data) => {
+    if (result === 'success') {
+        return {
+            type: types.FETCH_POKEMONS_BY_TYPE,
+            result,
+            pokemonsByType: data
+        };
+    }
+
+    return {
+        type: types.FETCH_POKEMONS_BY_TYPE,
+        result,
+        errors: data
+    };
+};
+
 export default {
     fetchPokemon,
     receivePokemon,
     releasePokemon,
     fetchAbility,
-    receiveAbility
+    receiveAbility,
+    fetchPokemonsByType,
+    receivePokemonsByType
 };

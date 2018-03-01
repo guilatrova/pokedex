@@ -59,7 +59,6 @@ describe('pokemons/duck/actions', () => {
     });
 
     describe("FETCH_ABILITY", () => {
-        const requestAbility = { ability: { url: "ability/100" } };
         it('should dispatch success action when ok', () => {
             const ability = { id: 1, name: "ability" };
             const expectedActions = [
@@ -69,7 +68,7 @@ describe('pokemons/duck/actions', () => {
 
             mock.onGet().reply(200, ability);
             
-            return store.dispatch(operations.fetchAbility(requestAbility)).then(() => {
+            return store.dispatch(operations.fetchAbility(1)).then(() => {
                 expect(store.getActions()).toEqual(expectedActions);
             });
         });
@@ -83,7 +82,38 @@ describe('pokemons/duck/actions', () => {
 
             mock.onGet().reply(404, errors);
 
-            return store.dispatch(operations.fetchAbility(requestAbility)).then(() => {
+            return store.dispatch(operations.fetchAbility(1)).then(() => {
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+    });
+
+    describe("FETCH_POKEMONS_BY_TYPE", () => {
+
+        it('should dispatch success action when ok', () => {
+            const pokemonsByType = { id: 1, name: "fire" };
+            const expectedActions = [
+                { type: types.FETCH_POKEMONS_BY_TYPE },
+                { type: types.FETCH_POKEMONS_BY_TYPE, result: 'success', pokemonsByType }
+            ];
+
+            mock.onGet().reply(200, pokemonsByType);
+            
+            return store.dispatch(operations.fetchPokemonsByType(1)).then(() => {
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+
+        it('should dispatch fail action when something goes wrong', () => {
+            const errors = { detail: "not found" };
+            const expectedActions = [
+                { type: types.FETCH_POKEMONS_BY_TYPE },
+                { type: types.FETCH_POKEMONS_BY_TYPE, result: 'fail', errors }
+            ];
+
+            mock.onGet().reply(404, errors);
+
+            return store.dispatch(operations.fetchPokemonsByType(1)).then(() => {
                 expect(store.getActions()).toEqual(expectedActions);
             });
         });

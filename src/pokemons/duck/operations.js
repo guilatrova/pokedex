@@ -19,12 +19,23 @@ export class FetchAbilityOperation extends GetOperation {
     getEndpoint = () => `ability/${this.id}`;
 }
 
+export class FetchPokemonsByType extends GetOperation {
+    constructor(id) {
+        super(actions.fetchPokemonsByType, actions.receivePokemonsByType);
+        this.id = id;
+    }
+
+    getEndpoint = () => `type/${this.id}`;
+}
+
 const fetchPokemon = (search) => new FetchPokemonOperation(search).dispatch();
 const fetchAbility = (id) => new FetchAbilityOperation(id).dispatch();
+const fetchPokemonsByType = (id) => new FetchPokemonsByType(id).dispatch();
 const releasePokemon = actions.releasePokemon;
 
 export default {
     fetchPokemon,
     fetchAbility,
+    fetchPokemonsByType,
     releasePokemon
 };

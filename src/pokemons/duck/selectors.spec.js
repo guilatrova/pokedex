@@ -37,4 +37,6 @@ describe('pokemons/duck/selectors', () => {
         )
         .toEqual(expected);
     });
+
+    it('getPokemonsOfType');
 });

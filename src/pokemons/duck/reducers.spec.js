@@ -6,6 +6,7 @@ describe('pokemons/duck/reducers', () => {
     const initialState = {
         pokemons: [],
         abilities: [],
+        filteredTypePokemons: {},
         isFetching: false,
         errors: {},
     };
@@ -114,6 +115,59 @@ describe('pokemons/duck/reducers', () => {
             ).toEqual({
                 ...initialState,
                 abilities: [],
+                isFetching: false,
+                errors
+            });
+        });
+
+    });
+
+    describe("FETCH_POKEMONS_BY_TYPE", () => {
+
+        it('should be handled', () => {
+            expect(
+                reducer(undefined, actions.fetchPokemonsByType("electric"))
+            ).toEqual({
+                ...initialState,
+                filteredTypePokemons: {},
+                isFetching: true,
+                errors: {}
+            });
+        });
+
+        it('should be handled when successful', () => {
+            const createPokemon = name => ({ name });
+            const data = { 
+                id: 1,
+                name: 'electric',
+                pokemon: [
+                    { pokemon: createPokemon('pikachu') },
+                    { pokemon: createPokemon('jolten') }
+                ]
+            };
+
+            expect(
+                reducer(fetchingState, actions.receivePokemonsByType('success', data))
+            ).toEqual({
+                ...initialState,
+                filteredTypePokemons: {
+                    'electric': [
+                        createPokemon('pikachu'),
+                        createPokemon('jolten')
+                    ]
+                },
+                isFetching: false,
+                errors: {}
+            });
+        });
+
+        it('should be handled when failed', () => {
+            const errors = { detail: 'unknown error' };
+            expect(
+                reducer(fetchingState, actions.receivePokemonsByType('fail', errors))
+            ).toEqual({
+                ...initialState,
+                filteredTypePokemons: {},
                 isFetching: false,
                 errors
             });

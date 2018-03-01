@@ -7,8 +7,11 @@ const getAbilitiesDescriptionsMappedById = state => state.pokemons.abilities.red
     return prev;
 }, []);
 
+const getPokemonsOfType = (state, type) => state.pokemons.filteredTypePokemons[type];
+
 export default {
     getPokemons,
     isFetching,
-    getAbilitiesDescriptionsMappedById
+    getAbilitiesDescriptionsMappedById,
+    getPokemonsOfType
 };
