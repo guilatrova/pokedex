@@ -47,6 +47,7 @@ const PokemonGrid = ({ pokemons, ownedPokemonsIds, images, onRelease, onSeeDetai
 PokemonGrid.propTypes = {
     pokemons: PropTypes.array.isRequired,
     images: PropTypes.array.isRequired,
+    ownedPokemonsIds: PropTypes.array.isRequired,
     onRelease: PropTypes.func.isRequired,
     onSeeDetails: PropTypes.func.isRequired
 };
