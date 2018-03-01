@@ -48,7 +48,8 @@ const PokemonCard = ({ pokemon, isKnown, isCaught, image, isFetching, onCatch, o
 PokemonCard.propTypes = {
     pokemon: PropTypes.object.isRequired,
     isKnown: PropTypes.bool.isRequired, 
-    isCaught: PropTypes.bool.isRequired, 
+    isCaught: PropTypes.bool.isRequired,
+    isFetching: PropTypes.bool, 
     image: PropTypes.string, 
     onCatch: PropTypes.func, 
     onRelease: PropTypes.func, 
