@@ -3,7 +3,7 @@ import configureMockStore from 'redux-mock-store';
 import MockAdapter from 'axios-mock-adapter';
 import * as apiModule from '../../src/services/api';
 
-export const mockAxios = () => {
+export const mockAxios = (state) => {
     const axiosInstance = apiModule.default();
     // eslint-disable-next-line
     apiModule.default = jest.fn();
@@ -12,7 +12,7 @@ export const mockAxios = () => {
     const middlewares = [ thunk ];
     const mockStore = configureMockStore(middlewares);
 
-    const store = mockStore();
+    const store = mockStore(state);
     const mock = new MockAdapter(axiosInstance);
     const restoreMock = () => apiModule.default.mockRestore();
 

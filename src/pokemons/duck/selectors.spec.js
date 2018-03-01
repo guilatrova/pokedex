@@ -31,9 +31,59 @@ describe('pokemons/duck/selectors', () => {
         .toEqual(isFetching);
     });
 
+    describe('isPokemonCached', () => {
+        const state = buildState({ pokemons: [ { id: 25, name: "pikachu" } ] });
+
+        it('accepts id', () => {
+            expect(selectors.isPokemonCached(state, 25)).toBeTruthy();
+        });
+
+        it('accepts name', () => {            
+            expect(selectors.isPokemonCached(state, "pikachu")).toBeTruthy();
+        });
+
+        it('returns false', () => {
+            expect(selectors.isPokemonCached(state, 1)).toBeFalsy();
+        });
+    });
+
+    describe('isAbilityCached', () => {
+        const state = buildState({ abilities: [ { id: 1 }] });
+
+        it('returns true', () => {
+            expect(selectors.isAbilityCached(state, 1)).toBeTruthy();
+        });
+
+        it('returns false', () => {
+            expect(selectors.isAbilityCached(state, 2)).toBeFalsy();
+        });
+    });
+
+    describe('isPokemonsByTypeCached', () => {
+        const state = {
+            pokemons: {
+                filteredTypePokemons: {
+                    fire: [
+                        { id: 4, name: 'charmander' }
+                    ]
+                },
+                owned: [],
+                pokemons: []
+            }
+        };
+
+        it('returns true when list is populated', () => {
+            expect(selectors.isPokemonsByTypeCached(state, 'fire')).toBeTruthy();
+        });
+
+        it('returns false when list is empty', () => {
+            expect(selectors.isPokemonsByTypeCached(state, 'water')).toBeFalsy();
+        });
+    });
+
     it('getAbilitiesDescriptionsMappedById', () => {
         const abilities = [
-            { id: 7, effect_entries: [ { short_effect: "Description7" } ] },
+            { id:  7, effect_entries: [ { short_effect: "Description7"  } ] },
             { id: 27, effect_entries: [ { short_effect: "Description27" } ] },
         ];
         const expected = [];

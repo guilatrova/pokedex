@@ -6,6 +6,15 @@ const getOwnedPokemons = state => getPokemons(state).filter(pkm => state.pokemon
 
 const getOwnedPokemonsIds = state => state.pokemons.owned;
 
+const isPokemonCached = (state, id) => {
+    const prop = isNaN(id) ? "name" : "id";
+    return getPokemons(state).some(pkm => pkm[prop] == id);
+};
+
+const isAbilityCached = (state, id) => state.pokemons.abilities.some(ab => ab.id == id);
+
+const isPokemonsByTypeCached = (state, type) => getPokemonsOfType(state, type).length > 0;
+
 const getAbilitiesDescriptionsMappedById = state => state.pokemons.abilities.reduce((prev, ability) => {
     prev[ability.id] = ability.effect_entries[0].short_effect;
     return prev;
@@ -28,6 +37,9 @@ const getPokemonsOfType = (state, type) => {
 
 export default {
     isFetching,
+    isPokemonCached,
+    isAbilityCached,
+    isPokemonsByTypeCached,
     getPokemons,
     getOwnedPokemons,
     getOwnedPokemonsIds,

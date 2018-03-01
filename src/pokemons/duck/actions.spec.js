@@ -6,7 +6,16 @@ describe('pokemons/duck/actions', () => {
     let store, mock, restoreMock;
 
     beforeEach(() => {
-        const mockHelper = mockAxios();
+        const mockHelper = mockAxios({
+            pokemons: {
+                pokemons: [],
+                owned: [],
+                abilities: [],
+                filteredTypePokemons: {},
+                isFetching: false,
+                errors: {},
+            }
+        });
         mock = mockHelper.mock;
 		store = mockHelper.store;
 		restoreMock = mockHelper.restoreMock;
@@ -59,6 +68,7 @@ describe('pokemons/duck/actions', () => {
     });
 
     describe("FETCH_ABILITY", () => {
+
         it('should dispatch success action when ok', () => {
             const ability = { id: 1, name: "ability" };
             const expectedActions = [
