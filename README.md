@@ -9,6 +9,17 @@ Just open it, type *Pikachu* and hit **CATCH IT!** to find + save.
 # Demo app
 It's hosted on [Heroku](http://latrova-pokedex.herokuapp.com).
 
+# Features
+
+- Save pokemons to your pokedex
+- Release pokemons from your pokedex
+- Search pokemons by number/name
+- See pokemon's details
+- Sort pokemon's attributes by name/value
+- Fetch ability descriptions
+- Find pokemons of a type (e.g. all electric)
+- Cache retrieved information in respect of [PokeAPI fair use policy](https://pokeapi.co/docsv2/#fairuse) :)
+
 # Commands
 
 | Description | Command |
