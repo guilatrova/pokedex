@@ -7,7 +7,7 @@ It uses the [open free pokemon API](https://pokeapi.co).
 Just open it, type *Pikachu* and hit **CATCH IT!** to find + save.
 
 # Demo app
-It's hosted on [Heroku](latrova-pokedex.herokuapp.com).
+It's hosted on [Heroku](http://latrova-pokedex.herokuapp.com).
 
 # Commands
 
